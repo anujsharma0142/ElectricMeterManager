@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.model.Meter;
+import com.example.demo.model.MeterData;
+import com.example.demo.service.MeterDataService;
 import com.example.demo.service.MeterService;
 
 @Controller
@@ -47,16 +49,27 @@ public class MeterController {
 		return "redirect:/";
 	}
 	
-//	@GetMapping("/addDetails/{id}")
-//	public String addDetails(@PathVariable (value = "id") long id, Model model) {
-//		//get meter from the service
-//		Meter meter = meterService.getMeterById(id);
-//		
-//		//set meter as a model attribiute to pre-populate the form
-//		
-//		model.addAttribute("meter", meter);
-//		return "Add_details";
-//		
-//	} 
+	@Autowired
+	private MeterDataService meterDataService;
 	
+	//display meter list
+	@RequestMapping("/history")
+	public String History (Model model) {
+		model.addAttribute("listMeterData", meterDataService.getAllMeters());
+		return "history";
+	}
+	@GetMapping("/addData")
+	public String addData(Model model) {
+		//create model attribute to bind form data
+		MeterData meterData = new MeterData();
+		model.addAttribute("meterData", meterData);
+		return "Add_Data";
+	}
+	
+	@PostMapping("/saveMeterData")
+	public String saveMeterData(@ModelAttribute("meterData") MeterData meterData) {
+        // save employee to database
+        meterDataService.saveMeterData(meterData);
+        return "history";
+	}
 }

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Electric Meter Manager</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+    <div class="container my-2">
+        <h1>Meters Data List</h1>
+
+        <table border="1" class="table table-striped table-responsive-md">
+            <thead>
+                <tr>
+                    <th>Month</th>
+                    <th>cost</th>
+                    <th>Due Date </th>
+                    <th>Payment Date </th>
+                    <th>Payment Mode</th>
+                    <th> Payment Id </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="meterData : ${listMeterData}">
+                    <td th:text="${meter.month}"></td>
+                    <td th:text="${meter.cost}"></td>
+                    <td th:text="${meter.dueDate}"></td>
+                    <td th:text="${meter.paymentdate}"></td>
+                    <td th:text="${meter.paymentMode}"></td>
+                    <td th:text="${meter.paymentId}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <hr>
+    <a th:href="@{/meters.html}"> Back to Dashboard</a>
+</body>
+
+</html>

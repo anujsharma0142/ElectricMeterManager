@@ -1,10 +1,20 @@
 package com.example.demo.model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+
+//import java.util.HashSet;
+//import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+//import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,6 +31,11 @@ public class Meter {
 	
 	@Column(name = "meter_name")
 	private String meterName;
+	
+    @OneToMany(mappedBy = "meter", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private Set<MeterData> meter_data;
+
 	public long getId() {
 		return id;
 	}

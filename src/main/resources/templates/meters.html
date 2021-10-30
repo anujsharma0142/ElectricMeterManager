@@ -28,7 +28,7 @@
                 <tr th:each="meter : ${listMeter}">
                     <td th:text="${meter.meterNo}"></td>
                     <td th:text="${meter.meterName}"></td>
-                    <td><a th:href="@{/addDetails/{id}(id=${meter.id})}" class="btn btn-primary">Add Details</a>
+                    <td><a th:href="@{/addData}" class="btn btn-primary">Add Data</a>
                         <a th:href="@{/deleteMeter/{id}(id=${meter.id})}" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
